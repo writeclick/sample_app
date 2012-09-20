@@ -17,6 +17,11 @@ describe User do
     @user = User.new(name: "Example User", email: "user@example.com")
   end
 
+  subject { @user }
+
+  it { should respond_to(:name) }
+  it { should respond_to(:email) }
+
   describe "when email format is invalid" do
     it "should be invalid" do
       addresses = %w[user@foo,com user_at_foo.org example.user@foo.
@@ -38,11 +43,7 @@ describe User do
     end
   end
 
-  subject { @user }
-
-  it { should respond_to(:name) }
-  it { should respond_to(:email) }
-
+  
   it { should be_valid }
 
   describe "when name is not present" do
