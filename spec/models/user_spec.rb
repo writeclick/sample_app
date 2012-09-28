@@ -21,6 +21,18 @@ describe User do
 
   it { should respond_to(:name) }
   it { should respond_to(:email) }
+  it { should be_valid }
+
+  describe "when name is not present" do
+    before { @user.name = " " }
+    it { should_not be_valid }
+  end
+
+  describe "when name is too long" do
+    before { @user.name = "a" * 51 }
+    it { should_not be_valid }
+  end
+
 
   describe "when email format is invalid" do
     it "should be invalid" do
@@ -41,23 +53,12 @@ describe User do
         @user.should be_valid
       end      
     end
-  end
+  end  
 
-  
-  it { should be_valid }
-
-  describe "when name is not present" do
-    before { @user.name = " " }
-    it { should_not be_valid }
-  end
 
   describe "when email is not present" do
     before { @user.email = " " }
     it { should_not be_valid }
   end
 
-  describe "when name is too long" do
-    before { @user.name = "a" * 51 }
-    it { should_not be_valid }
-  end
 end
