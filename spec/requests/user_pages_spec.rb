@@ -4,8 +4,6 @@ describe "User pages" do
 
   subject { page }
   
-  it { should have_selector('h1',    text: 'Sign up') }
-  it { should have_selector('title', text: full_title('Sign up')) }
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
@@ -38,6 +36,9 @@ describe "User pages" do
       it "should create a user" do
         expect { click_button submit }.to change(User, :count).by(1)
       end
+
+    it { should have_selector('h1',    text: 'Sign up') }
+    it { should have_selector('title', text: full_title('Sign up')) }
 
     end
   end
